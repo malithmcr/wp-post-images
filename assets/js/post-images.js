@@ -17,6 +17,7 @@ var postImages = (function () {
     var img = document.getElementById('image-tag');
     var wrapper = $('#js-image-wrapper');
     var hidden = $('#img-hidden-field');
+    var imageData = [];
     /**
      * Init wordpress media uploader.
      */
@@ -49,26 +50,28 @@ var postImages = (function () {
     };
     /**
      * _uploaderActions
+     * @param data { obj }
+     * @private
+     */
+    var _craeteImage = function (data) {
+        //create image
+        var image = $('<img/>');
+        image.attr('class', "post-image");
+        image.attr('src', data.url);
+        image.attr('width', '100%');
+        wrapper.append(image);
+    };
+    /**
+     * _uploaderActions
      * @private
      */
     var _uploaderActions = function () {
         customUploader.on('select', function () {
             var attachment = customUploader.state().get('selection').first().toJSON();
-            var hiddenValue = hidden.val();
-            var imageData = [];
-
             imageData.push({id: attachment.id, url: attachment.url})
-            imageData.push(JSON.stringify(hiddenValue));
-            hidden.val(JSON.stringify(imageData));
-
-            console.log(imageData);
+            hidden.val(JSON.stringify(imageData))
             //create image
-            var image = $('<img/>');
-            image.attr('class', "post-image");
-            image.attr('src', attachment.url);
-            image.attr('width', '100%');
-            wrapper.append(image);
-
+            _craeteImage(attachment);
             //toggleVisibility( 'ADD' );
         });
     };
@@ -81,9 +84,17 @@ var postImages = (function () {
             if ("" === customUploads.imageData || 0 === customUploads.imageData.length) {
                 //toggleVisibility( 'DELETE' );
             } else {
-                img.setAttribute('src', customUploads.imageData.src);
-                hidden.setAttribute('value', JSON.stringify([customUploads.imageData]));
-                toggleVisibility('ADD');
+                //img.setAttribute('src', customUploads.imageData.src);
+               // hidden.setAttribute('value', JSON.stringify([customUploads.imageData]));
+                var images = JSON.parse(customUploads.imageData);
+                imageData.push(images);
+                //create image
+                if(images) {
+                    for(var i=0; i <= images.length; i++) {
+                        _craeteImage(images[i]);
+                    }
+                }
+                //toggleVisibility('ADD');
             }
         });
     };

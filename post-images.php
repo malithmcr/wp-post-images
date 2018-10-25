@@ -105,13 +105,8 @@ class PostImages
             return;
         }
         if (isset($_POST['custom_image_data'])) {
-            $image_data = json_decode(stripslashes($_POST['custom_image_data']));
-            if (is_object($image_data[0])) {
-                $image_data = array('id' => intval($image_data[0]->id), 'src' => esc_url_raw($image_data[0]->url
-                ));
-            } else {
-                $image_data = [];
-            }
+            $image_data = stripslashes_deep($_POST['custom_image_data'], true);
+
             update_post_meta($post_id, 'custom_image_data', $image_data);
         }
     }
