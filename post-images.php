@@ -16,6 +16,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once( dirname( __FILE__ ) . '/includes/short-code.php' );
+
 /**
  * Main plugin class.
  */
@@ -62,22 +64,32 @@ class PostImages
         add_action('admin_enqueue_scripts', array( $this, 'register_admin_script' ));
     }
 
-
+    /**
+     * Register image uploader in meta box.
+     * register_post_meta_box
+     */
     function register_post_meta_box()
     {
         add_meta_box('post_image_meta_box', 'Post Images',  array( $this, 'post_image_process' ));
     }
 
-
+    /**
+     * Insert all script files
+     * register_admin_script
+     */
     function register_admin_script()
     {
         if (is_admin()) {
             wp_enqueue_script('wp_img_upload', plugin_dir_url(__FILE__) . 'assets/js/post-images.js', array('jquery', 'media-upload'), '0.0.1', true);
+            wp_enqueue_style( 'post-images', plugins_url( "assets/css/style.css", __FILE__ ), array(), '001' );
             wp_localize_script('wp_img_upload', 'customUploads', array('imageData' => get_post_meta(get_the_ID(), 'custom_image_data', true)));
         }
     }
 
-
+    /**
+     * Uploader Form
+     * post_image_process
+     */
     function post_image_process($post_id)
     {
         wp_nonce_field(basename(__FILE__), 'custom_image_nonce'); ?>
@@ -88,13 +100,17 @@ class PostImages
             </div>
             <input type="hidden" id="img-hidden-field" name="custom_image_data">
             <!-- Create dynamic hidden field and delete btn-->
-            <input type="button" id="image-upload-button" class="button" value="Add Image">
-            <input type="button" id="image-delete-button" class="button" value="Delete Image">
+            <input type="button" id="post-image-upload-button" class="button" value="Add Image">
+            <input type="button" id="post-image-image-delete-button" class="button" onclick="postImages.deleteImages()" value="Delete Images">
         </div>
 
         <?php
     }
 
+    /**
+     * Process the form and save data in db.
+     * save_post_images
+     */
     function save_post_images($post_id)
     {
         $is_autosave = wp_is_post_autosave($post_id);
@@ -110,6 +126,9 @@ class PostImages
             update_post_meta($post_id, 'custom_image_data', $image_data);
         }
     }
+
+
+
 
 }
 

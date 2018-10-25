@@ -5,15 +5,9 @@ Awesome custom image uploader for Wordpress posts.
   - Upload multiple images in the post.
   - use shortcode to show images.
  
-
-# work in progress
-
-  Feel free to create PR's or request features.
-
-# TODO
-> Save all images in db.
-> Create shortcodes.
-> Crate admin page.
+ Screenshots
+ ![Alt text](/screenshot1.png?raw=true "Backend")
+  ![Alt text](/screenshot1.png?raw=true "Frontend")
 
 
 ### Tech
@@ -30,3 +24,17 @@ Please clone this repo or download as a .zip file.
 go to wordpress admin->plugins->add new and 
 then uplad the file.
 
+### How to use
+
+You can show images on frontend using shortcode.
+
+In the post:
+>[postimages]
+In php file: 
+><?php echo do_shortcode('[postimages]'); ?>
+
+That's it. Enjoy!
+
+
+# work in progress
+  Feel free to create PR's or request features.

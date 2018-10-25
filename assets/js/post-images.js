@@ -10,11 +10,10 @@
  * License: GPLv2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
-var postImages = (function () {
+    var postImages = (function () {
 
-    var addButton = $('#image-upload-button');
-    var deleteButton = document.getElementById('image-delete-button');
-    var img = document.getElementById('image-tag');
+    var addButton = $('#post-image-upload-button');
+    var deleteButton = $('#post-image-image-delete-button');
     var wrapper = $('#js-image-wrapper');
     var hidden = $('#img-hidden-field');
     var imageData = [];
@@ -69,11 +68,26 @@ var postImages = (function () {
         customUploader.on('select', function () {
             var attachment = customUploader.state().get('selection').first().toJSON();
             imageData.push({id: attachment.id, url: attachment.url})
-            hidden.val(JSON.stringify(imageData))
+            hidden.val(JSON.stringify(imageData));
             //create image
             _craeteImage(attachment);
-            //toggleVisibility( 'ADD' );
+            //Show delete button
+            deleteButton.show();
         });
+    };
+    /**
+     * deleteImages
+     * this will delete all the images. but will add delete button
+     * for each of image.
+     * @public
+     */
+    var deleteImages = function () {
+        var confirmed = confirm("Are you sure to delete images ?");
+        if (confirmed == true) {
+            hidden.val('');
+            wrapper.empty();
+        }
+
     };
     /**
      * _onLoadHandls
@@ -81,47 +95,29 @@ var postImages = (function () {
      */
     var _onLoadHandls = function () {
         window.addEventListener('DOMContentLoaded', function () {
-            if ("" === customUploads.imageData || 0 === customUploads.imageData.length) {
-                //toggleVisibility( 'DELETE' );
-            } else {
-                //img.setAttribute('src', customUploads.imageData.src);
-               // hidden.setAttribute('value', JSON.stringify([customUploads.imageData]));
+
+            if ("" !== customUploads.imageData || 0 !== customUploads.imageData.length) {
                 var images = JSON.parse(customUploads.imageData);
-                imageData.push(images);
+                imageData = images;
+                deleteButton.show();
                 //create image
                 if(images) {
                     for(var i=0; i <= images.length; i++) {
-                        _craeteImage(images[i]);
+                        if(images[i]) {
+                            _craeteImage(images[i]);
+                        }
                     }
                 }
-                //toggleVisibility('ADD');
             }
+
         });
     };
-
-
-    /*
-     deleteButton.addEventListener( 'click', function() {
-     img.removeAttribute( 'src' );
-     hidden.removeAttribute( 'value' );
-     toggleVisibility( 'DELETE' );
-     } );*/
-
-    /*
-     var toggleVisibility = function( action ) {
-     deleteButton.style.display = '';
-     img.setAttribute( 'style', 'width: 100%;' );
-
-     if ( 'DELETE' === action ) {
-     deleteButton.style.display = 'none';
-     img.removeAttribute('style');
-     }
-     };*/
 
 
     //publicly accessible functions
     return {
         init: init,
+        deleteImages: deleteImages,
     };
 }());
 
