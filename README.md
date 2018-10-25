@@ -10,12 +10,6 @@ Awesome custom image uploader for Wordpress posts.
 
   Feel free to create PR's or request features.
 
-# TODO
-> Save all images in db.
-> Create shortcodes.
-> Crate admin page.
-
-
 ### Tech
 
 * [Wordpress] - This is a custom plugin for wordpress.
