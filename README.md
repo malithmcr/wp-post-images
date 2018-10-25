@@ -6,7 +6,10 @@ Awesome custom image uploader for Wordpress posts.
   - use shortcode to show images.
  
 ## Screenshots
+
+# Backend
 ![Alt text](/screenshot1.png?raw=true "Backend")
+# Frontend
 ![Alt text](/screenshot2.png?raw=true "Frontend")
 
 ### Tech
