@@ -30,10 +30,10 @@ then upload the file.
 
 You can show images on frontend using shortcode.
 
-In the post:
+>In the post:
 >[postimages]
-In php file: 
-<?php echo do_shortcode('[postimages]'); ?>
+>In php file: 
+>echo do_shortcode('[postimages]');
 
 That's it. Enjoy!
 
