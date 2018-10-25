@@ -7,9 +7,9 @@ Awesome custom image uploader for Wordpress posts.
  
 ## Screenshots
 
-# Backend
+#### Backend
 ![Alt text](/screenshot1.png?raw=true "Backend")
-# Frontend
+#### Frontend
 ![Alt text](/screenshot2.png?raw=true "Frontend")
 
 ### Tech
