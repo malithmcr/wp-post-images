@@ -24,7 +24,7 @@ Awesome custom image uploader for Wordpress posts.
 Please clone this repo or download as a .zip file.
 
 go to wordpress admin->plugins->add new and 
-then uplad the file.
+then upload the file.
 
 ### How to use
 
@@ -33,7 +33,7 @@ You can show images on frontend using shortcode.
 In the post:
 >[postimages]
 In php file: 
-><?php echo do_shortcode('[postimages]'); ?>
+<?php echo do_shortcode('[postimages]'); ?>
 
 That's it. Enjoy!
 
