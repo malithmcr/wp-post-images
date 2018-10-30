@@ -5,6 +5,10 @@ Awesome custom image uploader for Wordpress posts.
   - Upload multiple images in the post.
   - use shortcode to show images.
  
+## Download from wordpress plugins page
+
+https://wordpress.org/plugins/awesome-post-images/#description
+
 ## Screenshots
 
 #### Backend
