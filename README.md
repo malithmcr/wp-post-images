@@ -5,6 +5,10 @@ Awesome custom image uploader for Wordpress posts.
   - Upload multiple images in the post.
   - use shortcode to show images.
  
+## Download from wordpress plugins page
+
+https://wordpress.org/plugins/awesome-post-images/#description
+
 ## Screenshots
 
 #### Backend
@@ -30,10 +34,10 @@ then upload the file.
 
 You can show images on frontend using shortcode.
 
-In the post:
+>In the post:
 >[postimages]
-In php file: 
-<?php echo do_shortcode('[postimages]'); ?>
+>In php file: 
+>echo do_shortcode('[postimages]');
 
 That's it. Enjoy!
 
