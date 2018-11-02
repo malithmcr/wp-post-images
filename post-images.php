@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Post Images
-Plugin URI: http://malith.pro
+Plugin Name: Awesome Post Images
+Plugin URI: http://blog.malith.pro/wp-post-images-awesome-custom-image-uploader-for-wordpress-posts/
 Description: Awesome image upload for Wordpress posts.
 Author: Malith Priyashan
 Author URI: http://malith.pro
